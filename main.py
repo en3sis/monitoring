@@ -1,7 +1,7 @@
 
+import os
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import os
 from discord_webhook import DiscordEmbed, DiscordWebhook
 
 
@@ -30,7 +30,7 @@ def send_to_discord_webhook(json_data, url):
   print(f"Response from Discord webhook: {response}")
 
 
-class MyServer(BaseHTTPRequestHandler):
+class HTTP_SERVER(BaseHTTPRequestHandler):
   def do_POST(self):
 
     # Load the environment variables
@@ -58,7 +58,7 @@ class MyServer(BaseHTTPRequestHandler):
       self.wfile.write(b'Unauthorized')
 
 
-def run(server_class=HTTPServer, handler_class=MyServer, port=8000):
+def run(server_class=HTTPServer, handler_class=HTTP_SERVER, port=8000):
   server_address = ('', port)
   httpd = server_class(server_address, handler_class)
   print(f'Starting httpd on port {port}...')
